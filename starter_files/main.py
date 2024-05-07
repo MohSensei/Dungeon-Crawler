@@ -23,6 +23,20 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        #take keyboard presses
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a:
+                print("left")
+            if event.key == pygame.K_d:
+                print("right")
+            if event.key == pygame.K_w:
+                print("up")
+            if event.key == pygame.K_s:
+                print("down")
+                
+
+            
+        
     pygame.display.update()
 
 pygame.quit()
