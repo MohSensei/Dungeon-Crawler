@@ -16,9 +16,10 @@ moving_right = False
 moving_down = False
 moving_up = False
 
-#create player
+player_image = pygame.image.load("assets/images/characters/elf/idle/0.png").convert_alpha()
 
-player = Character(100, 100)
+#create player
+player = Character(100, 100, player_image)
 
 # Main game loop
 run = True
