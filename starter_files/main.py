@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 
 #define player movement variables
 moving_left = False
-moving_right = False
+moving_right = True
 moving_down = False
 moving_up = False
 
@@ -21,6 +21,10 @@ def scale_image(image, scale):
     w = image.get_width()
     h = image.get_height()
     return pygame.transform.scale(image, (w * scale, h * scale))
+
+#load character images
+mob_animations = []
+mob_types = ["elf", "imp", "skeleton", "goblin", "muddy", "tiny_zombie", "big_demon"]
     
 animation_types = ["idle", "run"]
 #load images
