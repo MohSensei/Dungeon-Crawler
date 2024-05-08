@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 
 #define player movement variables
 moving_left = False
-moving_right = True
+moving_right = False
 moving_down = False
 moving_up = False
 
