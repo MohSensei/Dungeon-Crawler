@@ -17,14 +17,14 @@ moving_right = False
 moving_down = False
 moving_up = False
 
-#Helped function to scale image
+#helper function to scale image
 def scale_image(image, scale):
     w = image.get_width()
     h = image.get_height()
     return pygame.transform.scale(image, (w * scale, h * scale))
 
 #load weapon images
-bow_image = pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha()
+bow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 
 #load character images
 mob_animations = []
