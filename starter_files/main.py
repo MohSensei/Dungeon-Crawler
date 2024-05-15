@@ -76,9 +76,11 @@ while run:
 
     #update player
     player.update()
+    bow.update(player)
 
     #draw player on screen
     player.draw(screen)
+    bow.draw(screen)
 
     #Event Handler
 
