@@ -8,8 +8,10 @@ class Weapon():
         self.arrow_image = arrow_image
         self.rect = self.image.get_rect()
         self.fired = False
+        self.last_shot = pygame.time.get_ticks()
 
     def update(self, player):
+        shot_cooldown  = 300
         arrow = None
         
         self.rect.center = player.rect.center
@@ -20,9 +22,10 @@ class Weapon():
         self.angle = math.degrees(math.atan2(y_dist, x_dist))
 
         #get mouseclick
-        if pygame.mouse.get_pressed()[0] and self.fired == False:
+        if pygame.mouse.get_pressed()[0] and self.fired == False and (pygame.time.get_ticks() - self.last_shot) >= shot_cooldown:
             arrow = Arrow(self.arrow_image, self.rect.centerx, self.rect.centery, self.angle)
             self.fired = True
+            self.last_shot = pygame.time.get_ticks()
         #reset mouseclick
         if pygame.mouse.get_pressed()[0] == False:
             self.fired = False
