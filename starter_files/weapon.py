@@ -27,7 +27,7 @@ class Weapon():
         if pygame.mouse.get_pressed()[0] == False:
             self.fired = False
 
-            
+
         return arrow
 
     def draw(self, surface):
@@ -39,7 +39,7 @@ class Arrow(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.original_image = image
         self.angle = angle
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.image = pygame.transform.rotate(self.original_image, self.angle - 90)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
