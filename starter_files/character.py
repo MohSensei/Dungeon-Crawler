@@ -14,7 +14,7 @@ class Character():
         self.rect = pygame.Rect(0, 0, 40, 40)
         self.rect.center = (x, y)
 
-    def mvoe(self, dx, dy):
+    def move(self, dx, dy):
         self.running = False
 
         if dx != 0 or dy != 0:
@@ -58,7 +58,7 @@ class Character():
             self.action = new_action
             #update the animation settings
             self.frame_index = 0
-            self.upadte_time = pygame.time.get_ticks()
+            self.update_time = pygame.time.get_ticks()
 
     def draw(self, surface):
         flipped_image = pygame.transform.flip(self.image, self.flip, False)
