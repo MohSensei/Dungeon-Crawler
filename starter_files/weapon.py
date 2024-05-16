@@ -1,5 +1,6 @@
 import pygame
 import math
+import constants
 class Weapon():
     def __init__(self, image, arrow_image):
         self.original_image = image 
@@ -45,6 +46,15 @@ class Arrow(pygame.sprite.Sprite):
         self.image = pygame.transform.rotate(self.original_image, self.angle - 90)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
+        #calculate the horizontal and vertical speeds based on the angle
+        self.dx = math.cos(math.radians(self.angle)) * constants.ARROW_SPEED
+        self.dy = -(math.sin(math.radians(self.angle)) * constants.ARROW_SPEED)#-ve because pygame y coordiante increases down the screen
+
+    def update(self):
+        
+        #reposition based on speed
+        self.rect.x += self.dx
+        self.rect.y += self.dy
 
     def draw(self, surface):
         surface.blit(self.image, ((self.rect.centerx - int(self.image.get_width()/2)),self.rect.centery - int(self.image.get_height()/2)))
