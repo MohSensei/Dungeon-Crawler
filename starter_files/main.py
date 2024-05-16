@@ -87,6 +87,7 @@ while run:
         arrow.update()
 
 
+
     #draw player on screen
     player.draw(screen)
     bow.draw(screen)
