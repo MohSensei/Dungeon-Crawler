@@ -48,8 +48,15 @@ for mob in mob_types:
 #create player
 player = Character(100, 100, mob_animations, 0)
 
+#create enemy
+enemy = Character(200, 300, mob_animations, 1)
+
 #create player's weapon
 bow = Weapon(bow_image, arrow_image)
+
+#create empty enemy list
+enemy_list = []
+enemy_list.append(enemy)
 
 #Create sprite groups
 arrow_group = pygame.sprite.Group()
@@ -79,6 +86,8 @@ while run:
     player.move(dx, dy)
 
     #update player
+    for enemy in enemy_list:
+        enemy.update()
     player.update()
     arrow = bow.update(player)
     if arrow:
@@ -89,6 +98,8 @@ while run:
 
 
     #draw player on screen
+    for enemy in enemy_list:
+        enemy.draw(screen)
     player.draw(screen)
     bow.draw(screen)
     for arrow in arrow_group:
