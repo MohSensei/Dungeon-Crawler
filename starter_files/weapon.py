@@ -64,7 +64,7 @@ class Arrow(pygame.sprite.Sprite):
 
         #Check collision between arrow and en:mies
         for enemy in enemy_list:
-            if enemy.rect.colliderect(self.rect):
+            if enemy.rect.colliderect(self.rect) and enemy.alive:
                 damage = 10 + random.randint(-5, 5)
                 enemy.health -= damage
                 self.kill()
