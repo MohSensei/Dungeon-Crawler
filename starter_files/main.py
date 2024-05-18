@@ -46,10 +46,10 @@ for mob in mob_types:
     mob_animations.append(animation_list)
 
 #create player
-player = Character(100, 100, mob_animations, 0)
+player = Character(100, 100, 100, mob_animations, 0)
 
 #create enemy
-enemy = Character(200, 300, mob_animations, 1)
+enemy = Character(200, 300, 100, mob_animations, 1)
 
 #create player's weapon
 bow = Weapon(bow_image, arrow_image)
@@ -93,7 +93,10 @@ while run:
     if arrow:
         arrow_group.add(arrow)
     for arrow in arrow_group:
-        arrow.update()
+        arrow.update(enemy_list)
+
+
+    print(enemy.health)
 
 
 
