@@ -26,6 +26,12 @@ def scale_image(image, scale):
     h = image.get_height()
     return pygame.transform.scale(image, (w * scale, h * scale))
 
+#load heart images
+heart_empty = scale_image(pygame.image.load("starter_files/assets/images/items/heart_empty.png").convert_alpha(), constants.ITEM_SCALE)
+heart_half = scale_image(pygame.image.load("starter_files/assets/images/items/heart_half.png").convert_alpha(), constants.ITEM_SCALE)
+heart_full = scale_image(pygame.image.load("starter_files/assets/images/items/heart_full.png").convert_alpha(), constants.ITEM_SCALE)
+
+
 #load weapon images
 bow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 arrow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/arrow.png").convert_alpha(), constants.WEAPON_SCALE)
