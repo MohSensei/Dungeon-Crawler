@@ -57,11 +57,15 @@ for mob in mob_types:
 #function for displaying game info
 def draw_info():
     #draw lives
+    half_heart_drawn = False
     for i in range(5):
         if player.health >= ((i + 1) * 20):
             screen.blit(heart_full, (10 + i * 50, 0))
-        elif (player.health % 20 > 0):
+        elif (player.health % 20 > 0) and half_heart_drawn == False:
             screen.blit(heart_half, (10 + i * 50, 0))
+            half_heart_drawn = True
+        else:
+            screen.blit(heart_empty, (10 + i * 50, 0))
 
 
 #damage text class
@@ -82,7 +86,7 @@ class DamageText(pygame.sprite.Sprite):
             self.kill()
 
 #create player
-player = Character(100, 100, 90, mob_animations, 0)
+player = Character(100, 100, 70, mob_animations, 0)
 
 #create enemy
 enemy = Character(200, 300, 100, mob_animations, 1)
