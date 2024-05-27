@@ -56,6 +56,8 @@ for mob in mob_types:
 
 #function for displaying game info
 def draw_info():
+    pygame.draw.rect(screen, constants.PANEL, (0,0, constants.SCREEN_WIDTH, 50))
+    pygame.draw.line(screen, constants.WHITE, (0, 50), (constants.SCREEN_WIDTH, 50) )
     #draw lives
     half_heart_drawn = False
     for i in range(5):
