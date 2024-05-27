@@ -56,6 +56,10 @@ class DamageText(pygame.sprite.Sprite):
         self.image = font.render(damage, True, color)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
+    
+    def update(self):
+        #move damage text up
+        self.rect.y -= 1
 
 #create player
 player = Character(100, 100, 100, mob_animations, 0)
