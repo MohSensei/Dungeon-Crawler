@@ -54,6 +54,13 @@ for mob in mob_types:
         animation_list.append(temp_list)
     mob_animations.append(animation_list)
 
+#function for displaying game info
+def draw_info():
+    #draw lives
+    for i in range(5):
+        if player.health >= ((i + 1) * 20):
+            screen.blit(heart_full, (10 + i * 50, 0))
+
 
 #damage text class
 class DamageText(pygame.sprite.Sprite):
@@ -129,7 +136,6 @@ while run:
     damage_text_group.update()
 
 
-    print(enemy.health)
 
 
 
@@ -141,6 +147,7 @@ while run:
     for arrow in arrow_group:
         arrow.draw(screen)
     damage_text_group.draw(screen)
+    draw_info()
 
     #Event Handler
 
