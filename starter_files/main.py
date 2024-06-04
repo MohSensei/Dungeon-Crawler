@@ -63,6 +63,11 @@ for mob in mob_types:
         animation_list.append(temp_list)
     mob_animations.append(animation_list)
 
+#Function for outputting text onto the screen
+def draw_text(text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+    screen.blit(img, (x, y))
+
 #function for displaying game info
 def draw_info():
     pygame.draw.rect(screen, constants.PANEL, (0,0, constants.SCREEN_WIDTH, 50))
@@ -78,6 +83,8 @@ def draw_info():
         else:
             screen.blit(heart_empty, (10 + i * 50, 0))
 
+    #show score
+    draw_text(f"Score: {player.score}", font, constants.WHITE, constants.SCREEN_WIDTH - 250, 15)
 
 #damage text class
 class DamageText(pygame.sprite.Sprite):
@@ -97,7 +104,7 @@ class DamageText(pygame.sprite.Sprite):
             self.kill()
 
 #create player
-player = Character(100, 100, 70, mob_animations, 0)
+player = Character(100, 100, 30, mob_animations, 0)
 
 #create enemy
 enemy = Character(200, 300, 100, mob_animations, 1)
