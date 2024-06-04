@@ -14,6 +14,8 @@ pygame.display.set_caption("Dungeon Crawler")
 #create clock for maintatining frame rate
 clock = pygame.time.Clock()
 
+#define game variables
+level = 1
 
 #define player movement variables
 moving_left = False
@@ -97,15 +99,18 @@ def draw_info():
     draw_text(f"X: {player.score}", font, constants.WHITE, constants.SCREEN_WIDTH - 100, 15)
 
 
+#Create empty tile list
+world_data = []
+for row in range(constants.ROWS):
+    r = [-1] * constants.COLS
+    world_data.append(r)
+#load in level data and create world
+with open(f"starter_files/levels/level{level}_data.csv", newline="") as csvfile:
+    reader = csv.reader(csvfile, delimiter = ",")
+    for x, row in enumerate(reader):
+        for y, tile in enumerate(row):
+            world_data[x][y] = int(tile)
 
-world_data = [
-[7, 7, 7, 7, 7, 7],
-[7, 0, 3, 4, 1, 7],
-[7, 6, 5, 1, 2, 7],
-[7, 5, 6, 4, 4, 7],
-[7, 2, 3, 4, 6, 7],
-[7, 0, 0, 0, 0, 7],
-]
 
 world = World()
 world.process_data(world_data, tile_list)
