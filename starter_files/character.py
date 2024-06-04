@@ -4,6 +4,7 @@ import constants
 class Character():
     def __init__(self, x, y, health, mob_animations, char_type):
         self.char_type = char_type
+        self.score = 0
         self.flip = False
         self.animation_list = mob_animations[char_type]
         self.frame_index = 0
