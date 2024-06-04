@@ -156,9 +156,7 @@ while run:
             damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
             damage_text_group.add(damage_text)
     damage_text_group.update()
-
-
-
+    item_group.update()
 
 
     #draw player on screen
@@ -169,6 +167,7 @@ while run:
     for arrow in arrow_group:
         arrow.draw(screen)
     damage_text_group.draw(screen)
+    item_group.draw(screen)
     draw_info()
 
     #Event Handler
