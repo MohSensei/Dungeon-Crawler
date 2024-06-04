@@ -37,7 +37,8 @@ for x in range(4):
     img = scale_image(pygame.image.load(f"starter_files/assets/images/items/coin_f{x}.png").convert_alpha(), constants.ITEM_SCALE)
     coin_images.append(img)
 
-#
+#load coin images
+red_potion = scale_image(pygame.image.load("starter_files/assets/images/items/potion_red.png").convert_alpha(), constants.ITEM_SCALE)
 
 #load weapon images
 bow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
