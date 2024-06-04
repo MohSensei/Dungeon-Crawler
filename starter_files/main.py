@@ -2,6 +2,7 @@ import pygame
 import constants
 from character import Character 
 from weapon import Weapon
+from items import Item
 
 pygame.init()
 
@@ -38,7 +39,7 @@ for x in range(4):
     coin_images.append(img)
 
 #load coin images
-red_potion = scale_image(pygame.image.load("starter_files/assets/images/items/potion_red.png").convert_alpha(), constants.ITEM_SCALE)
+red_potion = scale_image(pygame.image.load("starter_files/assets/images/items/potion_red.png").convert_alpha(), constants.POTION_SCALE)
 
 #load weapon images
 bow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
@@ -111,7 +112,12 @@ enemy_list.append(enemy)
 #Create sprite groups
 damage_text_group = pygame.sprite.Group()
 arrow_group = pygame.sprite.Group()
+item_group = pygame.sprite.Group() 
 
+potion = Item(200, 200, 1, [red_potion])
+item_group.add(potion)
+coin = Item(400, 400, 0, coin_images)
+item_group.add(coin)
 
 # Main game loop
 run = True
