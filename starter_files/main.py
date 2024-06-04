@@ -84,7 +84,18 @@ def draw_info():
             screen.blit(heart_empty, (10 + i * 50, 0))
 
     #show score
-    draw_text(f"Score: {player.score}", font, constants.WHITE, constants.SCREEN_WIDTH - 250, 15)
+    draw_text(f"X: {player.score}", font, constants.WHITE, constants.SCREEN_WIDTH - 100, 15)
+
+
+
+
+def draw_grid():
+    for x in range(30):
+        pygame.draw.line(screen, constants.WHITE, (x * constants.TILE_SIZE, 0), (x * constants.TILE_SIZE, constants.SCREEN_HEIGHT))
+        pygame.draw.line(screen, constants.WHITE, (0, x * constants.TILE_SIZE), (constants.SCREEN_WIDTH, x * constants.TILE_SIZE))
+
+
+
 
 #damage text class
 class DamageText(pygame.sprite.Sprite):
@@ -121,6 +132,9 @@ damage_text_group = pygame.sprite.Group()
 arrow_group = pygame.sprite.Group()
 item_group = pygame.sprite.Group() 
 
+score_coin = Item(constants.SCREEN_WIDTH - 115, 23, 0, coin_images)
+item_group.add(score_coin)
+
 potion = Item(200, 200, 1, [red_potion])
 item_group.add(potion)
 coin = Item(400, 400, 0, coin_images)
@@ -134,6 +148,8 @@ while run:
     clock.tick(constants.FPS)
 
     screen.fill(constants.BG)
+
+    draw_grid()
 
     #calculate player movement
     dx = 0
@@ -176,6 +192,7 @@ while run:
     damage_text_group.draw(screen)
     item_group.draw(screen)
     draw_info()
+    score_coin.draw(screen)
 
     #Event Handler
 
