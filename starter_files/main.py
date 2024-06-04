@@ -1,4 +1,5 @@
 import pygame
+import csv
 import constants
 from character import Character 
 from weapon import Weapon
@@ -12,6 +13,7 @@ pygame.display.set_caption("Dungeon Crawler")
 
 #create clock for maintatining frame rate
 clock = pygame.time.Clock()
+
 
 #define player movement variables
 moving_left = False
