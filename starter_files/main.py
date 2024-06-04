@@ -3,6 +3,7 @@ import constants
 from character import Character 
 from weapon import Weapon
 from items import Item
+from world import World
 
 pygame.init()
 
@@ -44,6 +45,13 @@ red_potion = scale_image(pygame.image.load("starter_files/assets/images/items/po
 #load weapon images
 bow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 arrow_image = scale_image(pygame.image.load("starter_files/assets/images/weapons/arrow.png").convert_alpha(), constants.WEAPON_SCALE)
+
+#load tilemap images
+tile_list = []
+for x in range(constants.TILE_TYPES):
+    tile_image = pygame.image.load(f"starter_files/assets/images/tiles/{x}.png").convert_alpha()
+    tile_image = pygame.transform.scale(tile_image, (constants.TILE_SIZE, constants.TILE_SIZE))
+    tile_list.append(tile_image)
 
 #load character images
 mob_animations = []
@@ -89,18 +97,16 @@ def draw_info():
 
 
 world_data = [
-[7, 7, 7, 7, 7],
-[7, 0, 3, 4, 7],
-[7, 6, 5, 1, 7],
-[7, 5, 6, 4, 7],
-[7, 7, 7, 7, 7],
+[7, 7, 7, 7, 7, 7],
+[7, 0, 3, 4, 1, 7],
+[7, 6, 5, 1, 2, 7],
+[7, 5, 6, 4, 4, 7],
+[7, 2, 3, 4, 6, 7],
+[7, 0, 0, 0, 0, 7],
 ]
 
-def draw_grid():
-    for x in range(30):
-        pygame.draw.line(screen, constants.WHITE, (x * constants.TILE_SIZE, 0), (x * constants.TILE_SIZE, constants.SCREEN_HEIGHT))
-        pygame.draw.line(screen, constants.WHITE, (0, x * constants.TILE_SIZE), (constants.SCREEN_WIDTH, x * constants.TILE_SIZE))
-
+world = World()
+world.process_data(world_data, tile_list)
 
 
 
@@ -156,7 +162,6 @@ while run:
 
     screen.fill(constants.BG)
 
-    draw_grid()
 
     #calculate player movement
     dx = 0
@@ -190,6 +195,7 @@ while run:
 
 
     #draw player on screen
+    world.draw(screen)
     for enemy in enemy_list:
         enemy.draw(screen)
     player.draw(screen)
