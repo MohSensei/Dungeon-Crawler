@@ -43,9 +43,11 @@ class Character():
             #update scroll based on player position
             #move camera left and right
             if self.rect.right > (constants.SCREEN_WIDTH - constants.SCROLL_THRESH):
-                screen_scroll[0] = (constants.SCREEN_WIDTH - constants.SCROLL_THRESH) - self.rect.left
+                screen_scroll[0] = (constants.SCREEN_WIDTH - constants.SCROLL_THRESH) - self.rect.right
+                self.rect.right = constants.SCREEN_WIDTH - constants.SCROLL_THRESH
             if self.rect.left < constants.SCROLL_THRESH:
                 screen_scroll[0] = constants.SCROLL_THRESH - self.rect.left
+                self.rect.left = constants.SCROLL_THRESH
         
         return screen_scroll
 
