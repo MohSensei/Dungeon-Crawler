@@ -111,6 +111,13 @@ class Fireball(pygame.sprite.Sprite):
         if self.rect.right < 0 or self.rect.left > constants.SCREEN_WIDTH or self.rect.bottom < 0 or self.rect.top > constants.SCREEN_HEIGHT:
             self.kill()
 
+        #check collision between self and player
+        if player.rect.colliderect(self.rect) and player.hit == False:
+            player.hit = True
+            player.list_hit = pygame.time.get_ticks()
+            player.health -= 10
+            self.kill()
+
     def draw(self, surface):
         surface.blit(self.image, ((self.rect.centerx - int(self.image.get_width()/2)),self.rect.centery - int(self.image.get_height()/2)))
 

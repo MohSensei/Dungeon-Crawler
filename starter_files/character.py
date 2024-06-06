@@ -24,8 +24,9 @@ class Character():
         self.rect = pygame.Rect(0, 0, constants.TILE_SIZE * size, constants.TILE_SIZE * size)
         self.rect.center = (x, y)
 
-    def move(self, dx, dy, obstacle_tiles):
+    def move(self, dx, dy, obstacle_tiles, exit_tile = None):
         screen_scroll = [0, 0]
+        level_complete = False
         self.running = False
 
         if dx != 0 or dy != 0:
@@ -63,6 +64,12 @@ class Character():
         
         #logic only applicable to player
         if self.char_type == 0:
+            #check collision with exit ladder
+            if exit_tile[1].colliderect(self.rect):
+                #ensure player is close to the center of the exit ladder
+                exit_dist = math.sqrt(((self.rect.centerx - exit_tile[1].centerx) ** 2) + ((self.rect.centery - exit_tile[1].centery) ** 2))
+                if exit_dist < 20:
+                    level_complete = True
 
             #update scroll based on player position
             #move camera left and right
@@ -81,7 +88,7 @@ class Character():
                 screen_scroll[1] = constants.SCROLL_THRESH - self.rect.top
                 self.rect.top = constants.SCROLL_THRESH
         
-        return screen_scroll
+        return screen_scroll, level_complete
     
     def ai(self, player, obstacle_tiles, screen_scroll, fireball_image):
         clipped_line = ()
