@@ -39,6 +39,7 @@ class World():
                 elif tile == 11:
                     player = Character(image_x, image_y, 100, mob_animations, 0)
                     self.player = player
+                    tile_data[0] = tile_list[0]
 
             #add image data to main tiles list
                 if tile >= 0:
