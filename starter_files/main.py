@@ -136,7 +136,7 @@ class DamageText(pygame.sprite.Sprite):
             self.kill()
 
 #create player
-player = Character(100, 100, 30, mob_animations, 0)
+player = Character(400, 300, 30, mob_animations, 0)
 
 #create enemy
 enemy = Character(200, 300, 100, mob_animations, 1)
