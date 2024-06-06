@@ -107,7 +107,11 @@ class Character():
             if self.rect.centery < player.rect.centery:
                 ai_dy = constants.ENEMY_SPEED
 
+        #move towards player
         self.move(ai_dx, ai_dy, obstacle_tiles)
+        #attack player
+        if dist < constants.ATTACK_RANGE:
+            player.health -= 10
 
 
     def update(self):
