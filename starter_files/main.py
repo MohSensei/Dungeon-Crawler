@@ -162,6 +162,8 @@ class ScreenFade():
             pygame.draw.rect(screen, self.color, (constants.SCREEN_WIDTH // 2 + self.fade_counter, 0, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
             pygame.draw.rect(screen, self.color, (0, 0 - self.fade_counter, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT // 2))
             pygame.draw.rect(screen, self.color, (0, constants.SCREEN_HEIGHT // 2 + self.fade_counter, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+        elif self.direction == 2: #vertical screen fade down
+            pygame.draw.rect(screen, self.color, (0, 0, constants.SCREEN_WIDTH, 0 + self.fade_counter))
         
         
         if self.fade_counter >= constants.SCREEN_WIDTH:
@@ -209,7 +211,7 @@ for item in world.item_list:
 
 #create screen fades
 intro_fade = ScreenFade(1, constants.BLACK, 4)
-death_fade = ScreenFade(1, constants.PINK, 4)
+death_fade = ScreenFade(2, constants.PINK, 4)
 
 # Main game loop
 run = True
@@ -307,7 +309,24 @@ while run:
 
     #Show death screen
     if player.alive == False:
-        death_fade.fade()
+        if death_fade.fade():
+            death_fade.fade_counter = 0
+            start_intro = True
+            world_data = reset_level()
+            #load in level data and create world
+            with open(f"starter_files/levels/level{level}_data.csv", newline="") as csvfile:
+                reader = csv.reader(csvfile, delimiter = ",")
+                for x, row in enumerate(reader):
+                    for y, tile in enumerate(row):
+                        world_data[x][y] = int(tile)            
+            world = World()
+            world.process_data(world_data, tile_list, item_images, mob_animations)
+            temp_score = player.score
+            player = world.player
+            player.score = temp_score
+            enemy_list = world.character_list
+            score_coin = Item(constants.SCREEN_WIDTH - 115, 23, 0, coin_images, True)
+            item_group.add(score_coin)
 
 
     #Event Handler
