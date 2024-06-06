@@ -209,7 +209,7 @@ for item in world.item_list:
 
 #create screen fades
 intro_fade = ScreenFade(1, constants.BLACK, 4)
-
+death_fade = ScreenFade(1, constants.PINK, 4)
 
 # Main game loop
 run = True
@@ -304,6 +304,11 @@ while run:
         if intro_fade.fade():
             start_intro = False
             intro_fade.fade_counter = 0
+
+    #Show death screen
+    if player.alive == False:
+        death_fade.fade()
+
 
     #Event Handler
     for event in pygame.event.get():
