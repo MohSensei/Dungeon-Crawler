@@ -78,11 +78,24 @@ class Character():
         
         return screen_scroll
     
-    def ai(self, screen_scroll):
+    def ai(self, player, obstacle_tiles, screen_scroll):
+        ai_dx = 0
+        ai_dy = 0
 
         #repostion the mobs based on screen scroll
         self.rect.x += screen_scroll[0]
         self.rect.y += screen_scroll[1]
+
+        if self.rect.centerx > player.rect.centerx:
+            ai_dx = -constants.ENEMY_SPEED
+        if self.rect.centerx < player.rect.centerx:
+            ai_dx = constants.ENEMY_SPEED
+        if self.rect.centery > player.rect.centery:
+            ai_dy = -constants.ENEMY_SPEED
+        if self.rect.centery < player.rect.centery:
+            ai_dy = constants.ENEMY_SPEED
+
+        self.move(ai_dx, ai_dy, obstacle_tiles)
 
 
     def update(self):

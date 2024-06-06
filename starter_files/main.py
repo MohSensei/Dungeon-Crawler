@@ -198,7 +198,7 @@ while run:
     #update all objects
     world.update(screen_scroll)
     for enemy in enemy_list:
-        enemy.ai(screen_scroll)
+        enemy.ai(player, world.obstacle_tiles, screen_scroll)
         enemy.update()
     player.update()
     arrow = bow.update(player)
