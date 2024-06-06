@@ -128,6 +128,10 @@ class DamageText(pygame.sprite.Sprite):
         self.counter = 0
     
     def update(self):
+        #repostion based on screen scroll
+        self.rect.x += screen_scroll[0]
+        self.rect.y += screen_scroll[1]
+        
         #move damage text up
         self.rect.y -= 1
         #delete the counter after a few seconds
@@ -139,7 +143,7 @@ class DamageText(pygame.sprite.Sprite):
 player = Character(400, 300, 30, mob_animations, 0)
 
 #create enemy
-enemy = Character(200, 300, 100, mob_animations, 1)
+enemy = Character(300, 300, 100, mob_animations, 1)
 
 #create player's weapon
 bow = Weapon(bow_image, arrow_image)
