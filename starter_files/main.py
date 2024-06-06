@@ -193,7 +193,7 @@ while run:
         dy = constants.SPEED
 
     #move player
-    screen_scroll = player.move(dx, dy)
+    screen_scroll = player.move(dx, dy, world.obstacle_tiles)
 
     #update all objects
     world.update(screen_scroll)
