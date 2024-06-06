@@ -79,6 +79,7 @@ class Character():
         return screen_scroll
     
     def ai(self, player, obstacle_tiles, screen_scroll):
+        clipped_line = ()
         ai_dx = 0
         ai_dy = 0
 
@@ -86,9 +87,17 @@ class Character():
         self.rect.x += screen_scroll[0]
         self.rect.y += screen_scroll[1]
 
+        #create a line of sight from the enemy to the player
+        line_of_sight = ((self.rect.centerx, self.rect.centery), (player.rect.centerx, player.rect.centery))
+        #check if line of sight passes through an obstacle tile
+        for obstacle in obstacle_tiles:
+            if obstacle[1].clipline(line_of_sight):
+                clipped_line = obstacle[1].clipline(line_of_sight)
+
+
         #check distance to player
         dist = math.sqrt(((self.rect.centerx - player.rect.centerx) ** 2) + ((self.rect.centery - player.rect.centery) ** 2))
-        if dist > constants.RANGE:
+        if not clipped_line and dist > constants.RANGE:
             if self.rect.centerx > player.rect.centerx:
                 ai_dx = -constants.ENEMY_SPEED
             if self.rect.centerx < player.rect.centerx:
