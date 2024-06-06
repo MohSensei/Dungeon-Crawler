@@ -121,7 +121,7 @@ with open(f"starter_files/levels/level{level}_data.csv", newline="") as csvfile:
 
 
 world = World()
-world.process_data(world_data, tile_list, item_images)
+world.process_data(world_data, tile_list, item_images, mob_animations)
 
 
 
@@ -147,7 +147,7 @@ class DamageText(pygame.sprite.Sprite):
             self.kill()
 
 #create player
-player = Character(400, 300, 30, mob_animations, 0)
+player = world.player
 
 #create enemy
 enemy = Character(300, 300, 100, mob_animations, 1)
