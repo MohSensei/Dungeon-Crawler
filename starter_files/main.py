@@ -96,6 +96,9 @@ def draw_info():
         else:
             screen.blit(heart_empty, (10 + i * 50, 0))
 
+    #level
+    draw_text("LEVEL: " + str(level), font, constants.WHITE, constants.SCREEN_WIDTH / 2, 15)
+
     #show score
     draw_text(f"X: {player.score}", font, constants.WHITE, constants.SCREEN_WIDTH - 100, 15)
 
