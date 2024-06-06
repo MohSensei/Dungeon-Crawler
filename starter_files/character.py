@@ -44,11 +44,18 @@ class Character():
                     self.rect.right = obstacle[1].left
                 if dx < 0:
                     self.rect.left = obstacle[1].right
-
-
-
+                
+        #check for collision with map in y direction
         self.rect.y += dy
-
+        for obstacle in obstacle_tiles:
+            #check for collision
+            if obstacle[1].colliderect(self.rect):
+                #check which side the collision is from
+                if dy > 0:
+                    self.rect.bottom = obstacle[1].top
+                if dy < 0:
+                    self.rect.top = obstacle[1].bottom
+        
         #logic only applicable to player
         if self.char_type == 0:
 
