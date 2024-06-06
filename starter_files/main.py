@@ -150,14 +150,13 @@ class DamageText(pygame.sprite.Sprite):
 player = world.player
 
 #create enemy
-enemy = Character(300, 300, 100, mob_animations, 1)
+
 
 #create player's weapon
 bow = Weapon(bow_image, arrow_image)
 
-#create empty enemy list
-enemy_list = []
-enemy_list.append(enemy)
+#extract enemies from world data
+enemy_list = world.character_list
 
 #Create sprite groups
 damage_text_group = pygame.sprite.Group()

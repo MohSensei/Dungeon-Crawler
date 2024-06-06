@@ -10,6 +10,7 @@ class World():
         self.exit_tile = None
         self.item_list = []
         self.player = None
+        self.character_list = []
 
     
     def process_data(self, data, tile_list, item_images, mob_animations ):
@@ -39,6 +40,10 @@ class World():
                 elif tile == 11:
                     player = Character(image_x, image_y, 100, mob_animations, 0)
                     self.player = player
+                    tile_data[0] = tile_list[0]
+                elif tile == 12:
+                    enemy = Character(image_x, image_y, 100, mob_animations, 1)
+                    self.character_list.append(enemy)
                     tile_data[0] = tile_list[0]
 
             #add image data to main tiles list
