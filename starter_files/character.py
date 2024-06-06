@@ -16,6 +16,7 @@ class Character():
         self.alive = True
         self.hit = False
         self.last_hit = pygame.time.get_ticks()
+        self.stunned = False
 
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = pygame.Rect(0, 0, constants.TILE_SIZE * size, constants.TILE_SIZE * size)
@@ -82,6 +83,7 @@ class Character():
     
     def ai(self, player, obstacle_tiles, screen_scroll):
         clipped_line = ()
+        stun_cooldown = 100
         ai_dx = 0
         ai_dy = 0
 
@@ -109,13 +111,26 @@ class Character():
             if self.rect.centery < player.rect.centery:
                 ai_dy = constants.ENEMY_SPEED
 
-        #move towards player
-        self.move(ai_dx, ai_dy, obstacle_tiles)
-        #attack player
-        if dist < constants.ATTACK_RANGE and player.hit == False:
-            player.health -= 10
-            player.hit = True
-            player.last_hit = pygame.time.get_ticks()
+        if not self.stunned:
+            #move towards player
+            self.move(ai_dx, ai_dy, obstacle_tiles)
+            #attack player
+            if dist < constants.ATTACK_RANGE and player.hit == False:
+                player.health -= 10
+                player.hit = True
+                player.last_hit = pygame.time.get_ticks()
+
+
+        #check if hit
+        if self.hit == True:
+            self.hit = False
+            self.last_hit = pygame.time.get_ticks()
+            self.stunned = True
+            self.running = False
+            self.update_action(0)
+
+        if (pygame.time.get_ticks() - self.last_hit > stun_cooldown):
+            self.stunned = False
 
 
     def update(self):
