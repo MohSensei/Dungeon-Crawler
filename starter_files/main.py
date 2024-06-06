@@ -131,7 +131,7 @@ class DamageText(pygame.sprite.Sprite):
         #repostion based on screen scroll
         self.rect.x += screen_scroll[0]
         self.rect.y += screen_scroll[1]
-        
+
         #move damage text up
         self.rect.y -= 1
         #delete the counter after a few seconds
@@ -200,7 +200,7 @@ while run:
     if arrow:
         arrow_group.add(arrow)
     for arrow in arrow_group:
-        damage, damage_pos = arrow.update(enemy_list)
+        damage, damage_pos = arrow.update(screen_scroll, enemy_list)
         if damage:
             damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
             damage_text_group.add(damage_text)
