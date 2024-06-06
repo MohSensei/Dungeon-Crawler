@@ -86,14 +86,17 @@ class Character():
         self.rect.x += screen_scroll[0]
         self.rect.y += screen_scroll[1]
 
-        if self.rect.centerx > player.rect.centerx:
-            ai_dx = -constants.ENEMY_SPEED
-        if self.rect.centerx < player.rect.centerx:
-            ai_dx = constants.ENEMY_SPEED
-        if self.rect.centery > player.rect.centery:
-            ai_dy = -constants.ENEMY_SPEED
-        if self.rect.centery < player.rect.centery:
-            ai_dy = constants.ENEMY_SPEED
+        #check distance to player
+        dist = math.sqrt(((self.rect.centerx - player.rect.centerx) ** 2) + ((self.rect.centery - player.rect.centery) ** 2))
+        if dist > constants.RANGE:
+            if self.rect.centerx > player.rect.centerx:
+                ai_dx = -constants.ENEMY_SPEED
+            if self.rect.centerx < player.rect.centerx:
+                ai_dx = constants.ENEMY_SPEED
+            if self.rect.centery > player.rect.centery:
+                ai_dy = -constants.ENEMY_SPEED
+            if self.rect.centery < player.rect.centery:
+                ai_dy = constants.ENEMY_SPEED
 
         self.move(ai_dx, ai_dy, obstacle_tiles)
 
