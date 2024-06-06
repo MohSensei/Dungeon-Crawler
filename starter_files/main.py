@@ -184,7 +184,8 @@ while run:
         dy = constants.SPEED
 
     #move player
-    player.move(dx, dy)
+    screen_scroll = player.move(dx, dy)
+    print(screen_scroll)
 
     #update player
     for enemy in enemy_list:
