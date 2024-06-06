@@ -200,7 +200,7 @@ while run:
             damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
             damage_text_group.add(damage_text)
     damage_text_group.update()
-    item_group.update(player)
+    item_group.update(screen_scroll, player)
 
 
     #draw player on screen

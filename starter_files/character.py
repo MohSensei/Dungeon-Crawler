@@ -48,6 +48,14 @@ class Character():
             if self.rect.left < constants.SCROLL_THRESH:
                 screen_scroll[0] = constants.SCROLL_THRESH - self.rect.left
                 self.rect.left = constants.SCROLL_THRESH
+
+             #move camera up and down
+            if self.rect.bottom > (constants.SCREEN_HEIGHT - constants.SCROLL_THRESH):
+                screen_scroll[1] = (constants.SCREEN_HEIGHT - constants.SCROLL_THRESH) - self.rect.bottom
+                self.rect.bottom = constants.SCREEN_HEIGHT - constants.SCROLL_THRESH
+            if self.rect.top < constants.SCROLL_THRESH:
+                screen_scroll[1] = constants.SCROLL_THRESH - self.rect.top
+                self.rect.top = constants.SCROLL_THRESH
         
         return screen_scroll
 
