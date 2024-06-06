@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 #define game variables
 level = 1
-start_intro = False
+start_intro = True
 screen_scroll = [0, 0]
 
 #define player movement variables
@@ -188,9 +188,6 @@ world.process_data(world_data, tile_list, item_images, mob_animations)
 #create player
 player = world.player
 
-#create enemy
-
-
 #create player's weapon
 bow = Weapon(bow_image, arrow_image)
 
@@ -213,6 +210,7 @@ for item in world.item_list:
 #create screen fades
 intro_fade = ScreenFade(1, constants.BLACK, 4)
 
+
 # Main game loop
 run = True
 while run: 
@@ -222,42 +220,42 @@ while run:
 
     screen.fill(constants.BG)
 
+    if player.alive:
+        #calculate player movement
+        dx = 0
+        dy = 0
+        if moving_right == True:
+            dx = constants.SPEED
+        if moving_left == True:
+            dx = -constants.SPEED
+        if moving_up == True:
+            dy = -constants.SPEED
+        if moving_down == True:
+            dy = constants.SPEED
 
-    #calculate player movement
-    dx = 0
-    dy = 0
-    if moving_right == True:
-        dx = constants.SPEED
-    if moving_left == True:
-        dx = -constants.SPEED
-    if moving_up == True:
-        dy = -constants.SPEED
-    if moving_down == True:
-        dy = constants.SPEED
-
-    #move player
-    screen_scroll, level_complete = player.move(dx, dy, world.obstacle_tiles, world.exit_tile)
+        #move player
+        screen_scroll, level_complete = player.move(dx, dy, world.obstacle_tiles, world.exit_tile)
 
     #update all objects
-    world.update(screen_scroll)
-    for enemy in enemy_list:
-        fireball = enemy.ai(player, world.obstacle_tiles, screen_scroll, fireball_image)
-        if fireball:
-            fireball_group.add(fireball)
-        if enemy.alive:
-            enemy.update()
-    player.update()
-    arrow = bow.update(player)
-    if arrow:
-        arrow_group.add(arrow)
-    for arrow in arrow_group:
-        damage, damage_pos = arrow.update(screen_scroll, world.obstacle_tiles, enemy_list)
-        if damage:
-            damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
-            damage_text_group.add(damage_text)
-    damage_text_group.update()
-    fireball_group.update(screen_scroll, player)
-    item_group.update(screen_scroll, player)
+        world.update(screen_scroll)
+        for enemy in enemy_list:
+            fireball = enemy.ai(player, world.obstacle_tiles, screen_scroll, fireball_image)
+            if fireball:
+                fireball_group.add(fireball)
+            if enemy.alive:
+                enemy.update()
+        player.update()
+        arrow = bow.update(player)
+        if arrow:
+            arrow_group.add(arrow)
+        for arrow in arrow_group:
+            damage, damage_pos = arrow.update(screen_scroll, world.obstacle_tiles, enemy_list)
+            if damage:
+                damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
+                damage_text_group.add(damage_text)
+        damage_text_group.update()
+        fireball_group.update(screen_scroll, player)
+        item_group.update(screen_scroll, player)
 
 
     #draw player on screen
