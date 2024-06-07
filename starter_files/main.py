@@ -45,6 +45,8 @@ pygame.mixer.music.set_volume(0.3)
 # pygame.mixer.music.play(-1, 0.0, 5000)
 shot_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_shot.mp3")
 shot_fx.set_volume(0.5)
+hit_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_hit.wav")
+hit_fx.set_volume(0.5)
 
 #load button images
 start_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_start.png").convert_alpha(), constants.BUTTON_SCALE)
@@ -295,6 +297,7 @@ while run:
                     if damage:
                         damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), constants.RED)
                         damage_text_group.add(damage_text)
+                        hit_fx.play()
                 damage_text_group.update()
                 fireball_group.update(screen_scroll, player)
                 item_group.update(screen_scroll, player)
