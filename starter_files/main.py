@@ -36,7 +36,10 @@ def scale_image(image, scale):
     return pygame.transform.scale(image, (w * scale, h * scale))
 
 #load button images
+start_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_start.png").convert_alpha(), constants.BUTTON_SCALE)
+exit_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_exit.png").convert_alpha(), constants.BUTTON_SCALE)
 restart_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_restart.png").convert_alpha(), constants.BUTTON_SCALE)
+resume_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_resume.png").convert_alpha(), constants.BUTTON_SCALE)
 
 #load heart images
 heart_empty = scale_image(pygame.image.load("starter_files/assets/images/items/heart_empty.png").convert_alpha(), constants.ITEM_SCALE)
@@ -218,7 +221,10 @@ intro_fade = ScreenFade(1, constants.BLACK, 4)
 death_fade = ScreenFade(2, constants.PINK, 4)
 
 #created button
+start_button = Button(constants.SCREEN_WIDTH// 2 - 145, constants.SCREEN_HEIGHT // 2 - 150, start_img)
+exit_button = Button(constants.SCREEN_WIDTH// 2 - 110, constants.SCREEN_HEIGHT // 2 + 50, exit_img)
 restart_button = Button(constants.SCREEN_WIDTH// 2 - 175, constants.SCREEN_HEIGHT // 2 - 50, restart_img)
+resume_button = Button(constants.SCREEN_WIDTH// 2 - 175, constants.SCREEN_HEIGHT // 2 - 150, resume_img)
 
 # Main game loop
 run = True
