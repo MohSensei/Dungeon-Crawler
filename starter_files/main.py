@@ -244,7 +244,11 @@ while run:
             run = False
     else:
         if pause_game == True:
-            pass
+            screen.fill(constants.MENU_BG)
+            if resume_button.draw(screen):
+                pause_game = False
+            if exit_button.draw(screen):
+                run = False
         else:
             screen.fill(constants.BG)
 
