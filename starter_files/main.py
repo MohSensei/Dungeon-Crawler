@@ -47,6 +47,10 @@ shot_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_shot.mp3")
 shot_fx.set_volume(0.5)
 hit_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_hit.wav")
 hit_fx.set_volume(0.5)
+coin_fx = pygame.mixer.Sound("starter_files/assets/audio/coin.wav")
+coin_fx.set_volume(0.5)
+heal_fx = pygame.mixer.Sound("starter_files/assets/audio/heal.wav")
+heal_fx.set_volume(0.5)
 
 #load button images
 start_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_start.png").convert_alpha(), constants.BUTTON_SCALE)
@@ -300,7 +304,7 @@ while run:
                         hit_fx.play()
                 damage_text_group.update()
                 fireball_group.update(screen_scroll, player)
-                item_group.update(screen_scroll, player)
+                item_group.update(screen_scroll, player, coin_fx, heal_fx)
 
 
             #draw player on screen
