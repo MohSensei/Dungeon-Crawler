@@ -42,7 +42,7 @@ def scale_image(image, scale):
 #load music and sounds
 pygame.mixer.music.load("starter_files/assets/audio/music.wav")
 pygame.mixer.music.set_volume(0.3)
-# pygame.mixer.music.play(-1, 0.0, 5000)
+pygame.mixer.music.play(-1, 0.0, 5000)
 shot_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_shot.mp3")
 shot_fx.set_volume(0.5)
 hit_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_hit.wav")
