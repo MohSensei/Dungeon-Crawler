@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 import csv
 import constants
 from character import Character 
@@ -7,6 +8,7 @@ from items import Item
 from world import World
 from button import Button
 
+mixer.init()
 pygame.init()
 
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
@@ -36,6 +38,11 @@ def scale_image(image, scale):
     w = image.get_width()
     h = image.get_height()
     return pygame.transform.scale(image, (w * scale, h * scale))
+
+#load music and sounds
+pygame.mixer.music.load("starter_files/assets/audio/music.wav")
+pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.play(-1, 0.0, 5000)
 
 #load button images
 start_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_start.png").convert_alpha(), constants.BUTTON_SCALE)
