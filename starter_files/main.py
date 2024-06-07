@@ -42,7 +42,9 @@ def scale_image(image, scale):
 #load music and sounds
 pygame.mixer.music.load("starter_files/assets/audio/music.wav")
 pygame.mixer.music.set_volume(0.3)
-pygame.mixer.music.play(-1, 0.0, 5000)
+# pygame.mixer.music.play(-1, 0.0, 5000)
+shot_fx = pygame.mixer.Sound("starter_files/assets/audio/arrow_shot.mp3")
+shot_fx.set_volume(0.5)
 
 #load button images
 start_img = scale_image(pygame.image.load("starter_files/assets/images/buttons/button_start.png").convert_alpha(), constants.BUTTON_SCALE)
@@ -287,6 +289,7 @@ while run:
                 arrow = bow.update(player)
                 if arrow:
                     arrow_group.add(arrow)
+                    shot_fx.play()
                 for arrow in arrow_group:
                     damage, damage_pos = arrow.update(screen_scroll, world.obstacle_tiles, enemy_list)
                     if damage:
